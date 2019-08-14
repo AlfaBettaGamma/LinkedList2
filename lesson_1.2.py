@@ -56,7 +56,7 @@ class LinkedList2:
                         self.tail = None
                     self.head = node.next
                     leng += 1
-                    break #до сюда вроде норм
+                    break 
                 if(node.next != None):
                     if(node.next.value == val):
                         node.next = node.next.next     
