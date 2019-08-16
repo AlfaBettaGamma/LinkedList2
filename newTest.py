@@ -12,14 +12,18 @@ class my_test:
             test.add_in_tail(Node(y))
         test.print_all_nodes()
         print('_______________________')
+        print('до - ',test.head.value,test.tail.value)
         test.add_in_head(Node('666'))
+        print('после - ',test.head.value,test.tail.value)
         test.print_all_nodes()
 
     def test2_add_in_head(self):
         test = LinkedList2()
         test.print_all_nodes()
         print('_______________________')
+        print('до - ',test.head,test.tail)
         test.add_in_head(Node(777))
+        print('после - ',test.head.value,test.tail.value)
         test.print_all_nodes()
         print('test - ',test.head.value)
 
@@ -278,4 +282,4 @@ class my_test:
             print(test.head.value, test.tail.value,' head - ',test.head.value,' tail - ',test.tail.value)        
 
 test = my_test()
-test.test4_del_true()
+test.test2_add_in_head()

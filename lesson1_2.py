@@ -21,14 +21,14 @@ class LinkedList2:
         self.tail = item
 
     def add_in_head(self, newNode):
-        if self.head is not None:
-            newNode.next = self.head
-            self.head.prev = newNode
-            newNode = None
-        else:
+        if self.head is None:
             self.tail = newNode
             newNode.prev = None
             newNode.next = None
+        else:
+            newNode.next = self.head
+            self.head.prev = newNode
+            newNode.prev = None
         self.head = newNode
         pass # здесь будет ваш код
 
