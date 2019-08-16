@@ -22,11 +22,14 @@ class LinkedList2:
         self.tail = item
 
     def add_in_head(self, newNode):
-        newNode.next = self.head
         if self.head is not None:
+            newNode.next = self.head
             self.head.prev = newNode
+            newNode = None
         else:
             self.tail = newNode
+            newNode.prev = None
+            newNode.next = None
         self.head = newNode
         pass # здесь будет ваш код
 
@@ -71,57 +74,22 @@ class LinkedList2:
         return list_val # здесь будет ваш код
 
     def insert(self, afterNode, newNode):
-        node = self.head
-        newN = newNode
-        if afterNode is None and self.head == None:
-            self.head = self.tail = newN
-        elif afterNode is None:
-            while node is not None:
-                if node.next is None:
-                    node.next = newN
-                    newN.prev = node
-                    newN.next = None
-                    self.tail = newN
-                node = node.next
-        else:
-            while node is not None:
-                if(node.value == afterNode.value):
-                    if node.next is None:
-                        node.next = newN
-                        newN.prev = node
-                        newN.next = None
-                        self.tail = newN
-                    else:
-                        newN.next = node.next
-                        node.next.prev = newN
-                        node.next = newN
-                        newN.prev = node
-
-                node = node.next
-        pass # здесь будет ваш код
-
-    def delete(self, val, all=False):
+        if afterNode is None:
+            self.add_in_tail(newNode)
         node = self.head
         while node is not None:
-            if node.value == val:
-                if node == self.head:
-                    self.head = self.head.next
-                    if self.head is not None:
-                        self.head.prev = None
+            if node == afterNode:
+                newNode.next = node.next
+                newNode.prev = node
+                node.next = newNode
                 if node == self.tail:
-                    self.tail = node.prev
-                    if self.tail is not None:
-                        self.tail.next = None
-                if node.prev is not None:
-                    node.prev.next = node.next
-                if node.next is not None:
-                    node.next.prev = node.prev
-                node = node.next
-                if not all:
-                    return
-            else:
-                node = node.next
+                    self.tail = newNode
+                else:
+                    newNode.next.prev = newNode
+                return
+            node = node.next
             pass
+        pass # здесь будет ваш код
 
     def delete(self, val, all=False):
         node = self.head
@@ -142,10 +110,12 @@ class LinkedList2:
                 node_pointer = node
                 node = node.next
                 del node_pointer
+
                 if not all:
                     return
             else:
                 node = node.next
+            pass
 
 class my_test:
 
