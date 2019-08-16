@@ -123,6 +123,30 @@ class LinkedList2:
                 node = node.next
             pass
 
+    def delete(self, val, all=False):
+        node = self.head
+        while node is not None:
+            if node.value == val:
+                if node == self.head:
+                    self.head = self.head.next
+                    if self.head is not None:
+                        self.head.prev = None
+                if node == self.tail:
+                    self.tail = node.prev
+                    if self.tail is not None:
+                        self.tail.next = None
+                if node.prev is not None:
+                    node.prev.next = node.next
+                if node.next is not None:
+                    node.next.prev = node.prev
+                node_pointer = node
+                node = node.next
+                del node_pointer
+                if not all:
+                    return
+            else:
+                node = node.next
+
 class my_test:
 
     def test1_add_in_head(self):
@@ -399,3 +423,4 @@ class my_test:
 
 test = my_test()
 test.test4_del_true()
+
