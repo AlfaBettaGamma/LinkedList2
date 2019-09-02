@@ -109,7 +109,6 @@ class LinkedList2:
                 node_pointer = node
                 node = node.next
                 del node_pointer
-
                 if not all:
                     return
             else:
